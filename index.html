@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Observer test</title>
+	<style>
+	body {
+		font-family: sans-serif;
+	}
+
+	p {
+		margin: 0 0 0.5em 0;
+	}
+
+	#editor {
+		border: 1px solid #ccc;
+		padding: 10px;;
+	}
+	</style>
+</head>
+<body>
+	<div id="editor1" style="display: none">
+		<p>Foo <strong>bar</strong> baz</p>
+		<ul>
+			<li>foo<ul>
+					<li>qux</li>
+					<li>quux</li>
+				</ul>
+			</li>
+			<li>bar</li>
+			<li>baz</li>
+		</ul>
+		<p>Lorem ipsum dolor sit amet.</p>
+	</div>
+	<div id="editor" contenteditable></div>
+	<script src="build/observer.js"></script>
+</body>
+</html>
