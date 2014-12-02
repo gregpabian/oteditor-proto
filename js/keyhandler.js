@@ -4,8 +4,8 @@ var KEY_MAP = {
 	Z: 90
 };
 
-function KeyHandler( target ) {
-	this.target = target;
+function KeyHandler( el ) {
+	this.el = el;
 	this.handlers = {};
 	this.attach();
 }
@@ -34,7 +34,7 @@ KeyHandler.prototype = {
 	},
 
 	attach: function() {
-		this.target.addEventListener( 'keydown', this.handle.bind( this ), false );
+		this.el.addEventListener( 'keydown', this.handle.bind( this ), false );
 	}
 };
 

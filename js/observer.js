@@ -8,7 +8,7 @@ var config = {
 };
 
 // inspired by http://jsfiddle.net/TjXEG/900/
-function getCaretPosition( elem ) {
+function getCaretPosition( el ) {
 	var sel = document.getSelection();
 
 	if ( !sel || !sel.rangeCount ) {
@@ -18,23 +18,37 @@ function getCaretPosition( elem ) {
 	var range = sel.getRangeAt( 0 ),
 		clone = range.cloneRange();
 
-	clone.selectNodeContents( elem );
+	clone.selectNodeContents( el );
 	clone.setEnd( range.endContainer, range.endOffset );
 
 	return clone.toString().length;
 }
 
-function Observer( target ) {
-	this.target = target;
-	this.mo = new MutationObserver( this.handleMutations );
-	this.mo.observe( this.target, config );
+function Observer( el ) {
+	this.el = el;
+	this.mo = new MutationObserver( this.handleMutations.bind( this ) );
+	this.mo.observe( this.el, config );
+	this.locked = false;
 }
 
 Observer.prototype = {
 	handleMutations: function( mutations ) {
+		if ( this.locked ) {
+			this.locked = false;
+			return;
+		}
+
 		mutations.forEach( function( mutation ) {
 			console.log( mutation.type, mutation );
 		} );
+	},
+
+	lock: function() {
+		this.locked = true;
+	},
+
+	unlock: function() {
+		this.locked = false;
 	}
 };
 
