@@ -5,7 +5,7 @@ module.exports = function( grunt ) {
 		browserify: {
 			build: {
 				src: [ 'js/main.js' ],
-				dest: 'build/observer.js',
+				dest: 'build/oteditor.js',
 				options: {
 					watch: true,
 					keepAlive: true
